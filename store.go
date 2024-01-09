@@ -26,8 +26,13 @@ func NewPostgres() (*PostgresStore, error) {
 		log.Fatal("Error loading .env file")
 	}
 
-	pw := os.Getenv("POSTGRES")
-	connStr := fmt.Sprintf("host=172.17.0.2 user=postgres dbname=postgres password=%s sslmode=disable", pw)
+	host := os.Getenv("HOST")
+	user := os.Getenv("USER")
+	dbname := os.Getenv("DBNAME")
+	password := os.Getenv("PASSWORD")
+	sslmode := os.Getenv("SSLMODE")
+	connStr := fmt.Sprintf("host=%s user=%s dbname=%s password=%s sslmode=%s", host, user, dbname, password, sslmode)
+
 	db, err := sql.Open("postgres", connStr)
 	if err != nil {
 		return nil, err
