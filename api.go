@@ -16,7 +16,7 @@ type ApiServer struct {
 // Run the server
 func (a *ApiServer) Run() error {
 	r := mux.NewRouter()
-	r.HandleFunc("/getData", makeHttpFunc(a.GetDataFilter))
+	r.HandleFunc("/getData", makeHttpFunc(a.GetDataFilter)).Methods("GET")
 	r.HandleFunc("/getDataAll", makeHttpFunc(a.GetDataAll))
 
 	err := http.ListenAndServe(a.ListenPort, r)

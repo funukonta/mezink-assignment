@@ -7,5 +7,7 @@ This Assignment uses stdlib from golang to develop REST API
 
 ## How To Set Up:
  1. Clone the Repo `git clone https://github.com/funukonta/mezink-assignment.git`
- 2. Tidy up some external lib with `go mod tidy`
- 3. Simply run `go run .`
+ 2. Download docker images for postgresDb `docker run --name some-postgres --env-file .env -d   postgres`
+ 3. Build docker image from Dockerfile `docker build --tag docker-mezink .`
+ 4. Run the API Server `docker run -p 8080:8080 docker-mezink`
+ 5. Test endpoint "/getData" with method get `curl http://localhost/getData`
