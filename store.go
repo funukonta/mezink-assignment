@@ -2,7 +2,11 @@ package main
 
 import (
 	"database/sql"
+	"fmt"
+	"log"
+	"os"
 
+	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
 )
 
@@ -17,7 +21,13 @@ type PostgresStore struct {
 }
 
 func NewPostgres() (*PostgresStore, error) {
-	connStr := `user=postgres dbname=postgres password=mezink sslmode=disable`
+	err := godotenv.Load(".env")
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
+
+	pw := os.Getenv("POSTGRES")
+	connStr := fmt.Sprintf("host=172.17.0.2 user=postgres dbname=postgres password=%s sslmode=disable", pw)
 	db, err := sql.Open("postgres", connStr)
 	if err != nil {
 		return nil, err
