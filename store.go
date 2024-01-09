@@ -3,10 +3,8 @@ package main
 import (
 	"database/sql"
 	"fmt"
-	"log"
 	"os"
 
-	"github.com/joho/godotenv"
 	_ "github.com/lib/pq"
 )
 
@@ -21,11 +19,6 @@ type PostgresStore struct {
 }
 
 func NewPostgres() (*PostgresStore, error) {
-	err := godotenv.Load(".env")
-	if err != nil {
-		log.Fatal("Error loading .env file")
-	}
-
 	host := os.Getenv("DB_HOST")
 	user := os.Getenv("USER")
 	dbname := os.Getenv("DBNAME")
