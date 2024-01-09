@@ -4,6 +4,7 @@ This Assignment uses stdlib from golang to develop REST API
 ## External library used :
 - mux
 - pq
+- godotenv
 
 ## How To Set Up:
  1. Clone the Repo `git clone https://github.com/funukonta/mezink-assignment.git`
